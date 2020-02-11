@@ -1,9 +1,17 @@
 import React from 'react';
+import { UserContext, PostContext } from '../App';
 
-function Post({ image, user, content }) {
+function Post({ image, user, content, id }) {
+  const currentUser = React.useContext(UserContext);
+  const { dispatch } = React.useContext(PostContext);
+  const isCurrentUser = currentUser === user;
+
+  function handleDeletePost() {
+    dispatch({ type: 'DELETE_POST', payload: { id } });
+  }
+
   return (
     <>
-      {' '}
       {image && (
         <img
           style={{
@@ -14,8 +22,12 @@ function Post({ image, user, content }) {
           src={URL.createObjectURL(image)}
           alt="Post Cover"
         />
-      )}{' '}
-      <p> {content} </p> <div> {user} </div>{' '}
+      )}
+      <p> {content} </p>
+      <div style={{ color: isCurrentUser && 'green' }}> {user} </div>
+      <div>
+        {isCurrentUser && <button onClick={handleDeletePost}>Delete</button>}
+      </div>
     </>
   );
 }

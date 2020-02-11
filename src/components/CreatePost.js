@@ -23,21 +23,21 @@ function CreatePost({ user, handleAddPost }) {
 
   return (
     <div>
-      <h1> Create New Post </h1>{' '}
+      <h1> Create New Post </h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Add Post Content"
           onChange={e => setContent(e.target.value)}
           value={content}
-        />{' '}
+        />
         <input
           type="file"
           onChange={e => setImage(e.target.files[0])}
           ref={imageInputRef}
-        />{' '}
-        <button type="submit"> Submit </button>{' '}
-      </form>{' '}
+        />
+        <button type="submit"> Submit </button>
+      </form>
     </div>
   );
 }
